@@ -121,9 +121,9 @@ var kedua = "senang";
 var ketiga = "belajar";
 var keempat = "javascript";
 
-var pertama1 = pertama.toUpperCase("s");
-var kedua2 = kedua.toUpperCase("s", "g");
-var ketiga3 = ketiga.toUpperCase("b", "r");
+var pertama1 = pertama.replaceAll("s", "S");
+var kedua2 = kedua.replace("senang","SenanG");
+var ketiga3 = ketiga.replace("belajar", "BelajaR");
 var keempat4 = keempat.toUpperCase(keempat);
 console.log(pertama1 + " " + kedua2 + " " + ketiga3 + " " + keempat4);
 
@@ -150,4 +150,17 @@ console.log("Luas Segitiga: " + luasSegitiga);
 console.log("==== Soal No.8 ====");
 
 var sisi = " 1 2 ";
-var jariJari = "7.5";
+var jarijari = "7.5";
+
+var sisiconcat = sisi.replace(/\s+/g, '');
+var sisitrim = sisiconcat.trim();
+
+var sisiNumber = Number(sisitrim);
+var jarijarifloat = parseFloat(jarijari);
+
+var luasPersegi = sisiNumber * sisiNumber ;
+console.log("Luas Persegi : " + luasPersegi);
+
+var luaslingkaran = 3.14 * jarijarifloat * jarijarifloat;
+console.log("LuasLingkaran : " + luaslingkaran);
+
