@@ -71,7 +71,7 @@ console.log("==== Soal No.5 ====");
 var sentence = "Fullstack Developer"
 var indeks = 0;
 while(indeks < sentence.length){
-    if (indeks != 1 && indeks != 6 && indeks != 11 && indeks != 13 && indeks != 15)
+    if (indeks != 1 && indeks != 6 && indeks != 11 && indeks != 13 && indeks != 17)
     console.log(sentence[indeks])
     indeks++
 }
