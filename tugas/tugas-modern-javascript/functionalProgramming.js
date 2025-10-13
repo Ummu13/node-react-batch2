@@ -38,8 +38,8 @@ function HitungBalok (panjang, lebar, tinggi){
 hitungKubus(8)
 HitungBalok(12,7, 5)
 
-//soal No.2
-console.log("==== Soal No.2 ====");
+//soal No.3
+console.log("==== Soal No.3 ====");
 var people = [
   { name: "John", job: "Programmer", gender: "male", age: 30 },
   { name: "Sarah", job: "Model", gender: "female", age: 27 },
@@ -67,6 +67,19 @@ recursiveSort(people, people.length);
 for (var i = 0; i < people.length; i++) {
   console.log((i + 1) + ". " + people[i].name);
 }
+
+//soal No.4
+console.log("==== Soal No.4 ====");
+
+var phones=[
+  {name: "Samsung Galaxy A52", brand: "Samsung", year: 2021, colors: ["black", "white"]},
+  {name: "Redmi Note 10 Pro", brand: "Xiaomi", year: 2021, colors: ["white", "blue"]},
+  {name: "Redmi Note 9 Pro", brand: "Xiaomi", year: 2020, colors: ["white", "blue", "black"]},
+  {name: "Iphone 12", brand: "Apple", year: 2020, colors: ["silver", "gold"]},
+  {name: "Iphone 11", brand: "Apple", year: 2019, colors: ["gold", "black", "silver"]},
+]
+
+
 
 
 
