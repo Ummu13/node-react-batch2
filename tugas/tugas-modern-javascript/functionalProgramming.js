@@ -36,7 +36,7 @@ function HitungBalok (panjang, lebar, tinggi){
 }
 
 hitungKubus(8)
-HitungBalok(12,7, 5)
+HitungBalok(12,7,5)
 
 //soal No.3
 console.log("==== Soal No.3 ====");
