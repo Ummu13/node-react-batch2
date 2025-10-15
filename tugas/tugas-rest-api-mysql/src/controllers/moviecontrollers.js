@@ -27,7 +27,7 @@ const createNilaiMahasiswa = (req, res) => {
   })
 }
 
- //read movie (menampilkan semua data)
+ //read tabel nilai mahasiswa (menampilkan semua isi data pada tabel)
  const readNilaiMahasiswa= (req, res) => {
    let queryText = "SELECT * FROM nilai_mahasiswa"
    connectionPool.query(queryText, (err, data) => {
@@ -39,7 +39,7 @@ const createNilaiMahasiswa = (req, res) => {
  });
  }
 
-//read movie by id (menampilkan data berdasarkan id)
+//read tabel nilai mahasiswa by id (menampilkan data berdasarkan id)
 const readNilaiMahasiswaById= (req, res) => {
   let {id} = req.params 
   let queryText= `SELECT * FROM nilai_mahasiswa WHERE id =${id}`
@@ -52,7 +52,7 @@ res.json(data);
 });
 }
 
-// //Update data (menampilkan data berdasarkan id)
+// //Update data tabel mahasiswa (menampilkan data berdasarkan id)
  const updateNilaiMahasiswa = (req, res) => {
    let {nama, mata_kuliah, nilai} = req.body
    let {id} = req.params 
@@ -79,7 +79,7 @@ res.json(data);
  });
  }
 
-// //Hapus data (menghapus data didatabase berdasarkan id)
+// //Hapus data pada tabel nilai mahasiswa (menghapus data didatabase berdasarkan id)
 const deleteNilaiMahasiswa = (req, res) => {
   let {id} = req.params 
   let queryText= `DELETE FROM nilai_mahasiswa WHERE id =${id}`
