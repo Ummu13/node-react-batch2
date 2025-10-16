@@ -78,6 +78,28 @@ var phones=[
   {name: "Iphone 12", brand: "Apple", year: 2020, colors: ["silver", "gold"]},
   {name: "Iphone 11", brand: "Apple", year: 2019, colors: ["gold", "black", "silver"]},
 ]
+function recursiveSort(arr, n) {
+  if (n === 1) return;
+
+  for (var i = 0; i < n - 1; i++) {
+    if (arr[i].year > arr[i + 1].year) {
+      var temp = arr[i];
+      arr[i] = arr[i + 1];
+      arr[i + 1] = temp;
+      if(phones.colors == "black")
+        var temp1 = arr[j];
+    }
+  }
+
+  recursiveSort(arr, n - 1);
+}
+
+recursiveSort(people, people.length);
+
+for (var i = 0; i < people.length; i++) {
+  console.log((i + 1) + ". " + people[i].name);
+}
+
 
 
 
