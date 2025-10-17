@@ -22,6 +22,8 @@ model movies {
   updatedAt DateTime @updatedAt
   kategori  Category? @relation(fields: [CategoryId], references: [id])
   CategoryId Int?
+  pengguna  User? @relation(fields: [UserId], references: [id])
+  UserId    Int?
 }
 
 model Category {
@@ -40,6 +42,6 @@ model User {
   email     String  @unique
   name      String
   password  String
-  movies    String
+  movies    movies[]
   category  Category[]
 }
