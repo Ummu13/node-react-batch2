@@ -1,5 +1,5 @@
 const express = require("express");
-const {createNilaiMahasiswa, readNilaiMahasiswa, readNilaiMahasiswaById, updateNilaiMahasiswa, deleteNilaiMahasiswa} = require("../controllers/moviecontrollers");
+const {createNilaiMahasiswa, readNilaiMahasiswa, readNilaiMahasiswaById, updateNilaiMahasiswa, deleteNilaiMahasiswa} = require("../controllers/mahasiswacontrollers");
 const router = express.Router();
 
 //router.get("/movie/:id", getMoviesByID);

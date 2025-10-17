@@ -4,63 +4,63 @@ const { PrismaClient } = require('../../generated/prisma')
 const prisma = new PrismaClient()
 
 //creat (mengirim atau menginput data ke database)
-const createMovie = async (req, res) => {
-  let {title, year, CategoryId} = req.body
+const createCategory = async (req, res) => {
+  let {name} = req.body
     try{    
-      const movies = await prisma.movies.create({
-        data: { title,year,CategoryId}
+      const category = await prisma.category.create({
+        data: {name}
       })
         res.json({
-          info:movies,
-          message: "Movie Was Succesfully",
+          info:category,
+          message: "category Was Succesfully",
           status: "success" 
       })
       return
     } catch (err){
       res.json({
           info:null,
-          message: "Movie was failed to created",
+          message: "category was failed to created",
           status: "failed" 
       })
 
 }}
 
-//read movie (menampilkan semua data)
-const readMovie = async (req, res) => {
-  const movies = await prisma.movies.findMany()
+//read categpry (menampilkan semua data)
+const readCategory = async (req, res) => {
+  const category = await prisma.category.findMany()
   try{    
     res.json({
-      info :movies,
-      message: "Movie Was Succesfully",
+      info :category,
+      message: "category Was Succesfully",
       status: "success"
     })
     return
   }catch (err){
       res.json({
           info:null,
-          message: "Movie was failed to created",
+          message: "category was failed to created",
           status: "failed" 
      })  
 }}  
 
-//read movie by id (menampilkan data berdasarkan id)
-const readMovieById= async(req, res) => {
+//read category by id (menampilkan data berdasarkan id)
+const readCategoryById= async(req, res) => {
   let {id} = req.params
   try{
-    const movies = await prisma.movies.findFirst({
+    const category = await prisma.category.findFirst({
       where: {id: Number(id)}
     })
-    if(movies){
-      message = "Movie Was Succesfully"
+    if(category){
+      message = "category Was Succesfully"
       stat = "success"
       status = 200
     }else{
-      message = "Movie was failed to created"
+      message = "category was failed to created"
       stat = "Not Found"
       status = 404
     } 
     res.status(status).json({
-      info :movies,
+      info :category,
       message:message,
       status: stat
     })
@@ -73,38 +73,38 @@ const readMovieById= async(req, res) => {
 }}
 
 //Update data (memperbarui data berdasarkan id)
-const updateMovie = async(req, res) => {
+const updateCategory = async(req, res) => {
   let {id} = req.params
-  let {title, year, categoryId} = req.body
+  let {title, year} = req.body
   try{
-    const movies = await prisma.movies.update({
+    const category = await prisma.category.update({
       where: {id: Number(id),},
-      data: {title,year, categoryId},
+      data: {title,year},
     })
       res.json({
-        info:movies,
-        message: "Movie Was Succesfully",
+        info:category,
+        message: "category Was Succesfully",
         status: "success"        
         })
         return
   }catch (err){
       res.json({
         info:null,
-        message: "Movie was failed to created",
+        message: "category was failed to created",
         status: "failed" 
       })
 }}
 
 
 //Hapus data (menghapus data didatabase berdasarkan id)
-const deleteMovie = async (req, res) => {
+const deleteCategory = async (req, res) => {
   let {id} = req.params
   try{
-  const movies = await prisma.movies.delete({
+  const category = await prisma.category.delete({
     where: {id: Number(id)}
   })
     res.json({
-      info :movies,
+      info :category,
       message: "Delete Was Succesfully",
       status: "success"
     })
@@ -117,5 +117,4 @@ const deleteMovie = async (req, res) => {
      })  
 }}
 
-module.exports = {createMovie, readMovie, readMovieById, updateMovie, deleteMovie }
-//module.exports = {getMoviesByID}
+module.exports = {createCategory, readCategory, readCategoryById, updateCategory, deleteCategory }
