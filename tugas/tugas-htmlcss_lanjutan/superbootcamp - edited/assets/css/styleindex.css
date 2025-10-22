@@ -1,0 +1,143 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Poppins";
+  box-sizing: border-box;
+}
+
+/* css bagian header */
+
+header {
+  height: 80px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* background-color: antiquewhite; */
+}
+
+.container1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5vw;
+  width: 50vw;
+  /* background-color: burlywood; */
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  /* overflow: hidden;   */
+}
+
+ul {
+  display: flex;
+  gap: 15px;
+}
+
+ul li a {
+  display: block;
+  color: #203239;
+  text-align: center;
+  padding: 5px 7px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  color: blue;
+}
+
+/* css bagian section */
+
+section {
+  padding-top: 80px;
+}
+
+/* section 1 */
+.container_hero {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.container_hero-headline {
+  width: 500px;
+  height: 300px;
+  /* background-color: aqua; */
+}
+
+.container_hero-headline h1 {
+  margin-bottom: 20px;
+}
+
+.container_hero-headline ul {
+  display: flex;
+  gap: 10px;
+}
+
+.container_hero-image {
+  margin-top: 0;
+}
+
+/* section 2 */
+.container_describe {
+  display: flex;
+  height: 100vh;
+  align-content: center;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+
+@keyframes miring-kanan {
+  0% {
+    transform: skewX(0deg);
+  }
+  100% {
+    transform: skewX(-15deg);
+  }
+}
+
+.container_describe-animation {
+  padding: 50px;
+  width: 500px;
+  height: 300px;
+  background-color: #203239;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#animation {
+  animation: miring-kanan 2s infinite alternate;
+}
+
+.container_describe-info__card {
+  border-width: 5px;
+  border-color: black;
+  border-style: solid;
+}
+
+.container_describe-info__card p {
+  width: 300px;
+  height: 300px;
+  text-align: justify;
+  padding: 20px;
+  /* background-color: antiquewhite; */
+  border-width: 5px;
+  border-color: black;
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
