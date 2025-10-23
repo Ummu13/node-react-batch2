@@ -29,10 +29,10 @@ function App() {
     <div class="container"> 
       <img src="/src/assets/logo.jpeg" alt="logo thingstodo"/>
       <h2>THINGS TO DO</h2>
-      <h6>During bootcamp in sanbercode</h6>
+      <h5>During bootcamp in sanbercode</h5>
       <form action="/action_page.php">
             {thingsToDo.map((item, index) => (
-            <div key={index}>
+            <div class="checkbox" key={index}>
               <input
                 type="checkbox"
                 id={`task-${index}`}
@@ -44,7 +44,7 @@ function App() {
             </div> 
           ))}
           <br />
-          <input class="submit" type="submit" value="Submit" />
+          <button class="submit" type="submit" value="">SEND</button>
       </form>
     </div>
     </>
