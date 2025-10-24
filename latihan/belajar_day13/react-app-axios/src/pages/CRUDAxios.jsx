@@ -2,17 +2,33 @@ import { useEffect, useState } from "react";
 import "../crudaxios.css";
 import axios from "axios";
 
+
 function CRUDaxios() {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [dataMovie, setDataMovie] = useState([]);
   const [dataCategory, setDataCategory] = useState([]);
+  const [title, setTitle] = useState("");
+  const [year, setYear] = useState("");
+  const [CategoryId, setCategoryId] = useState("");
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
     fetchDataMovie();
     fetchDataCategory();
   }, []);
 
+
+  // const itemId = 'your_item_id'; 
+
+  // axios.get(`/api/movie/${itemId}`)
+  //   .then(response => {
+  //     // Store the fetched data in your component's state or a variable
+  //     const itemToEdit = response.data;
+  //     // Now you can populate your edit form with this data
+  //   })
+  //   .catch(error => {
+  //     console.error('Error fetching item:', error);
+  // });
 
   const fetchDataMovie = () => {
     axios
@@ -25,8 +41,6 @@ function CRUDaxios() {
       });
   };
 
-
-
   const fetchDataCategory = () => {
     axios
       .get("http://localhost:3000/api/category")
@@ -37,74 +51,135 @@ function CRUDaxios() {
         console.log(err);
       });
   };
-  
-  const handleChange = (event) => {
-    setInput({...input,[name]:value})
-  }
 
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+    console.log(title);
+  };
 
+  const handleYearChange = (event) => {
+    setYear(event.target.value);
+    console.log(year);
+  };
 
-  const fetchData = () => {
-    axios
-      .get("http://localhost:3000/api/movie")
+  const handleCategoryIdChange = (event) => {
+    setCategoryId(event.target.value);
+    console.log(CategoryId);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      let posting = await axios.post("http://localhost:3000/api/movie", {
+        title: (title),
+        year: Number(year),
+        CategoryId: Number(CategoryId)
+      });
+      console.log(posting);
+      fetchDataMovie();
+      fetchDataCategory();
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  const handleUpdate = async(id) => {
+    try {
+      axios
+      .get(`http://localhost:3000/api/movie/${id}`)
       .then((response) => {
-        setData(response.data.info);
+        let result = response.data.info;
+        console.log(result);
+        setTitle(result.title)
+        setYear(result.year)
+        setCategoryId(CategoryId)
       })
       .catch((err) => {
         console.log(err);
       });
+    } catch (err) {
+      alert(err);
+    }
   };
 
-
+  const handleDelete = async(id) => {
+    try {
+      const response = await axios.delete(`http://localhost:3000/api/movie/${id}`)
+      console.log('Item deleted successfully:', response.data);
+      fetchDataMovie();
+      fetchDataCategory();
+    } catch (err) {
+      alert(err);
+    }
+  };
 
   return (
     <>
       <h1>CRUD AXIOS</h1>
+    <fieldset className="fieldset bg-base-300 border-base-300 rounded-box w-90 border p-4">
+      <form onSubmit={handleSubmit}>
+        <label className="label" for="title">Movie Title</label>
+        <input className="input"
+          type="text"
+          id="title"
+          name="title"
+          onChange={handleTitleChange}
+          value={title}
+          placeholder="Movies..."></input>
 
-      <form >
-        <label for="title">Movie Title</label><br/>
-        <input type="text" id="title" name="title" onChange={handleChange} placeholder="Movies..."></input><br/>
+        <label className="label" for="year">year</label>
+        <input className="input"
+          type="text"
+          id="year"
+          name="year"
+          value={year}
+          onChange={handleYearChange}
+          placeholder="Movies Realese date..."></input>
 
-        <label for="year">year</label><br/>
-        <input type="Number" id="year" name="year" onChange={handleChange} placeholder="Movies Realese date..."></input><br/>
-
-      <label for="category">Category</label>
-      <select id="category" name="category" onChange={handleChange}>
-        {
-          dataCategory.map((item, index) =>{
-            return<option key={index} value={item.id}>{item.name}</option>
-
-          })
-        }
-      </select><br/>
-
-
-      <input type="submit"></input>
+        <label for="category">Category</label>
+        <select value={CategoryId} className="select select-neutral" id="category" name="category" onChange={handleCategoryIdChange}>
+          {dataCategory.map((item, index) => {
+            return (
+              <option key={index} value={item.id}>
+                {item.name}
+              </option>
+            );
+          })}
+        </select>
+        <br />
+        <input type="submit" value="Send" className ="btn btn-success mt-4"></input>
       </form>
+    </fieldset>
 
-      <table>
+    <div class="overflow-x-auto">
+      <table class="table table-xs">
         <thead>
           <tr>
             <th>No</th>
             <th>Judul</th>
             <th>Tahun</th>
             <th>Kategori</th>
+            <th >Aksi</th>
           </tr>
         </thead>
 
         <tbody>
-          {data.map((item, index) => {
+          {dataMovie.map((item, index) => {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{index + 1}</td>
                 <td>{item.title}</td>
                 <td>{item.year}</td>
                 <td>{item.CategoryId}</td>
+                <td><submit  id="delete" onClick={() => handleDelete(item.id)} className="btn btn-error">Delete</submit></td>
+                <td><submit  id="edit" onClick={() => handleUpdate(item.id)} className="btn btn-warning">Edit</submit></td>
               </tr>
             );
           })}
+
         </tbody>
       </table>
+      </div>
     </>
   );
 }

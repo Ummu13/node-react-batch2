@@ -1,6 +1,11 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+/* css tabel
 table {
   border-collapse: collapse;
   width: 100%;
+  border: 1px solid white; 
 }
 
 th, td {
@@ -9,5 +14,76 @@ th, td {
 }
 
 tr:nth-child(even) {
-  background-color: pink;
+  background-color:#92b6f0;
 }
+
+#aksi{
+  text-align: center;
+}
+
+css button aksi 
+.button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button4 {border-radius: 12px;}
+
+#delete{
+  background-color: red;
+  padding: 10px;
+}
+
+#edit{
+  background-color: green;
+
+  padding: 10px 20px;
+}
+
+css form 
+form {
+  border-radius: 5px;
+  padding: 20px;
+  background-color: 	#92b6f0;
+}
+
+label {
+  display: block;
+  text-align: left;
+  color:black;
+  margin:0;
+  padding:0;
+}
+
+input[type=text], select {
+  width: 100%;
+  padding: 12px;
+  margin: 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #50b8e7;
+  color: white;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #c2d6f6;
+} */
