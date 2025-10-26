@@ -4,7 +4,8 @@ import axios from "axios";
 
 
 function CRUDaxios() {
-  // const [data, setData] = useState([]);
+  const [UpDate, setUpDate] = useState(false);
+  const [editId, setEditId] = useState(null);
   const [dataMovie, setDataMovie] = useState([]);
   const [dataCategory, setDataCategory] = useState([]);
   const [title, setTitle] = useState("");
@@ -12,7 +13,6 @@ function CRUDaxios() {
   const [CategoryId, setCategoryId] = useState("");
 
   useEffect(() => {
-    // fetchData();
     fetchDataMovie();
     fetchDataCategory();
   }, []);
@@ -69,7 +69,24 @@ function CRUDaxios() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
+    
+      if(UpDate && editId){
+                try {
+      let update = await axios.put(`http://localhost:3000/api/movie/${editId}`, {
+        title: (title),
+        year: Number(year),
+        CategoryId: Number(CategoryId)
+      });
+      setUpDate(false);
+      setEditId(null);
+      console.log(update);
+      fetchDataMovie();
+      fetchDataCategory();
+    } catch (err) {
+      alert(err);
+    }
+      }else{
+        try {
       let posting = await axios.post("http://localhost:3000/api/movie", {
         title: (title),
         year: Number(year),
@@ -80,7 +97,7 @@ function CRUDaxios() {
       fetchDataCategory();
     } catch (err) {
       alert(err);
-    }
+    }}
   };
 
   const handleUpdate = async(id) => {
@@ -92,7 +109,9 @@ function CRUDaxios() {
         console.log(result);
         setTitle(result.title)
         setYear(result.year)
-        setCategoryId(CategoryId)
+        setCategoryId(result.CategoryId)
+        setEditId(id);
+        setUpDate(true);
       })
       .catch((err) => {
         console.log(err);
