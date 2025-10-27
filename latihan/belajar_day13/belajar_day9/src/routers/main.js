@@ -14,11 +14,11 @@ router.put('/movie/:id', updateMovie)
 router.delete('/movie/:id', deleteMovie)
 
 //router category controllers
-router.post('/category', authJWT, createCategory)
+router.post('/category', createCategory)
 router.get('/category', readCategory)
 router.get('/category/:id', readCategoryById)
-router.put('/category/:id', authJWT, updateCategory)
-router.delete('/category/:id', authJWT, deleteCategory)
+router.put('/category/:id',  updateCategory)
+router.delete('/category/:id', deleteCategory)
 module.exports = { router };
 
 // Login

@@ -19,7 +19,7 @@ const createMovie = async (req, res) => {
     } catch (err){
       res.json({
           info:null,
-          message: "Movie was failed to created",
+          message: "Movie was failed to created", err,
           status: "failed" 
       })
 

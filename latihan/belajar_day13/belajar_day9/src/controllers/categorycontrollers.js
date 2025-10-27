@@ -75,11 +75,11 @@ const readCategoryById= async(req, res) => {
 //Update data (memperbarui data berdasarkan id)
 const updateCategory = async(req, res) => {
   let {id} = req.params
-  let {title, year} = req.body
+  let {name} = req.body
   try{
     const category = await prisma.category.update({
       where: {id: Number(id),},
-      data: {title,year},
+      data: {name},
     })
       res.json({
         info:category,
