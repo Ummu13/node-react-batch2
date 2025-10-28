@@ -57,6 +57,7 @@ function CRUDCategory() {
           let posting = await axios.post("http://localhost:3000/api/category", {
             name: (name),
           });
+          setName("");
           console.log(posting);
           fetchDataCategory();
         } catch (err) {

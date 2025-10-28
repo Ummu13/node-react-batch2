@@ -89,6 +89,9 @@ function CRUDaxios() {
           year: Number(year),
           CategoryId: Number(CategoryId),
         });
+        setTitle("");
+        setYear("");
+        setCategoryId("");
         console.log(posting);
         fetchDataMovie();
         fetchDataCategory();
@@ -128,8 +131,82 @@ function CRUDaxios() {
     }
   };
 
+  // Pagenation
+   const PaginatedTable = ({ data, totalValuesPerPage = 5 }) => {
+    const [currentPageNumber, setCurrentPageNumber] = useState(1);
+
+    const totalPages = Math.ceil(data.length / totalValuesPerPage);
+    const startIndex = (currentPageNumber - 1) * totalValuesPerPage;
+    const endIndex = startIndex + totalValuesPerPage;
+    const dataToDisplay = data.slice(startIndex, endIndex);
+
+    const goOnPrevPage = () => {
+      if (currentPageNumber > 1) setCurrentPageNumber((prev) => prev - 1);
+    };
+
+    const goOnNextPage = () => {
+      if (currentPageNumber < totalPages) setCurrentPageNumber((prev) => prev + 1);
+    };
+
+
   return (
     <>
+    <table class="table table-xs">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Judul</th>
+                  <th>Tahun</th>
+                  <th>Kategori</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {dataToDisplay.map((item, index) => (  
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{item.title}</td>
+                      <td>{item.year}</td>
+                      <td>
+                        {
+                          dataCategory.find((cat) => cat.id === item.CategoryId)
+                            ?.name
+                        }
+                      </td>
+                      <td>
+                        <submit
+                          id="delete"
+                          onClick={() => handleDelete(item.id)}
+                          className="btn btn-error">
+                          Hapus
+                        </submit>
+                      </td>
+                      <td>
+                        <submit
+                          id="edit"
+                          onClick={() => handleUpdate(item.id)}
+                          className="btn btn-warning">
+                          Edit
+                        </submit>
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          <div>
+            <button onClick={goOnPrevPage} disabled={currentPageNumber === 1}>Previous</button>
+            <span>Page {currentPageNumber} of {totalPages}</span>
+            <button onClick={goOnNextPage} disabled={currentPageNumber === totalPages}>Next</button>
+          </div>    
+</>
+)}
+
+
+
+return(
+  <>
       {/* Tampilan Form */}
       <div className="navbar bg-primary text-primary-content ">
         <button className="btn btn-ghost text-xl place-items-center">
@@ -137,11 +214,6 @@ function CRUDaxios() {
         </button>
       </div>
 
-      {/* <div className="flex w-full flex-col">
-      <div className="card bg-base-300 rounded-box grid h-20 place-items-center">content</div>
-      <div className="divider">OR</div>
-      <div className="card bg-base-300 rounded-box grid h-20 place-items-center">content</div>
-    </div> */}
 
       <div className="flex w-full flex-col">
         <div className="card bg-base-300 rounded-box grid h-100 place-items-center">
@@ -206,56 +278,11 @@ function CRUDaxios() {
 
         <div className="card bg-base-300 rounded-box grid h-100 place-items-center">
           <div class="overflow-x-auto">
-            <table class="table table-xs">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Judul</th>
-                  <th>Tahun</th>
-                  <th>Kategori</th>
-                  <th>Aksi</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {dataMovie.map((item, index) => {
-                  return (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{item.title}</td>
-                      <td>{item.year}</td>
-                      <td>
-                        {
-                          dataCategory.find((cat) => cat.id === item.CategoryId)
-                            ?.name
-                        }
-                      </td>
-                      <td>
-                        <submit
-                          id="delete"
-                          onClick={() => handleDelete(item.id)}
-                          className="btn btn-error">
-                          Hapus
-                        </submit>
-                      </td>
-                      <td>
-                        <submit
-                          id="edit"
-                          onClick={() => handleUpdate(item.id)}
-                          className="btn btn-warning">
-                          Edit
-                        </submit>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+          <PaginatedTable data={dataMovie} />
         </div>
       </div>
+      </div>
     </>
-  );
-}
+  )}
 
 export default CRUDaxios;
